@@ -1,0 +1,13 @@
+.page_search_users {
+  height: 100%;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search_div {
+  display: flex;
+}
