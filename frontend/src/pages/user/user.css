@@ -1,6 +1,6 @@
-.list {
+.card_info_user {
+  height: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 20px;
 }

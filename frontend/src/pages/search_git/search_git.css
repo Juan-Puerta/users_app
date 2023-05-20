@@ -1,6 +1,7 @@
-.list {
+.user_git {
+  height: 90%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 20px;
 }

@@ -1,20 +1,18 @@
-.card {
+.menu_app {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  background-color: #c4c4c4;
-  padding: 4px;
-  width: 220px;
-  border-radius: 4px;
-}
-
-.card:hover {
-  cursor: pointer;
+  background-color: grey;
+  border-radius: 50px;
+  padding-right: 12px;
+  padding-left: 20px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   -webkit-box-shadow: 0px 0px 34px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 34px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 34px 0px rgba(0, 0, 0, 0.75);
 }
 
-.card_info {
-  text-align: left;
-  margin-left: 10px;
+.input_user {
+  width: 140px;
 }

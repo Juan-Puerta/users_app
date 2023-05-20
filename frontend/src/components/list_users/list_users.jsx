@@ -26,11 +26,7 @@ const ListUsers = () => {
       renderItem={(user) => (
         <List.Item key={user.id}>
           <div className="list">
-            <CardUser
-              user_img={user?.avatar_url}
-              user_id={user?.id}
-              user_login={user?.login}
-            />
+            <CardUser user={user} />
           </div>
         </List.Item>
       )}
