@@ -12,8 +12,12 @@ export const AppContextWrapper = (props) => {
   const pages = { search: 0, view: 1, saved: 2 };
 
   const get_saved_users = async () => {
-    const resp = await local_api.get(`git_users/`);
-    set_saved_users(resp.data);
+    try {
+      const resp = await local_api.get(`git_users/`);
+      set_saved_users(resp.data);
+    } catch (e) {
+      console.log("Data base off");
+    }
   };
 
   useEffect(() => {

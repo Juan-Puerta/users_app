@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Input, Button, message, Divider } from "antd";
+import { Input, Button, message, Breadcrumb } from "antd";
 import { BarChartOutlined, SearchOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import AppContext from "../../store/app_context";
@@ -10,6 +10,36 @@ const MenuApp = () => {
   const state = useContext(AppContext);
   const [user_name, set_user_name] = useState("");
   const [messageApi, contextHolder] = message.useMessage();
+
+  const menuItems = [
+    {
+      key: "1",
+      label: (
+        <Link onClick={() => state.set_page(state.pages.search)} to="/">
+          Search Users
+        </Link>
+      ),
+    },
+    {
+      key: "2",
+      label: (
+        <Link onClick={() => state.set_page(state.pages.view)} to="/user">
+          View User
+        </Link>
+      ),
+    },
+    {
+      key: "3",
+      label: (
+        <Link
+          onClick={() => state.set_page(state.pages.saved)}
+          to="/saved_users"
+        >
+          Saved Users
+        </Link>
+      ),
+    },
+  ];
 
   const error = (msg) => {
     messageApi.open({
@@ -51,9 +81,9 @@ const MenuApp = () => {
 
     for (var i = 0; i < stop; i++) {
       var follow = await github_api.get(
-        `users/${state.searched_users[i].login}/followers`
+        `users/${state.searched_users[i].login}`
       );
-      followers.push(follow.data.length);
+      followers.push(follow.data.followers);
       names.push(state.searched_users[i].login);
     }
 
@@ -64,20 +94,16 @@ const MenuApp = () => {
     <div className="menu_app">
       {contextHolder}
       <div>
-        <Link onClick={() => state.set_page(state.pages.search)} to="/">
-          Search Users
-        </Link>
-        <Divider type="vertical" />
-        <Link onClick={() => state.set_page(state.pages.view)} to="/user">
-          View User
-        </Link>
-        <Divider type="vertical" />
-        <Link
-          onClick={() => state.set_page(state.pages.saved)}
-          to="/saved_users"
-        >
-          Saved Users
-        </Link>
+        <Breadcrumb
+          items={[
+            {
+              title: "Options",
+              menu: {
+                items: menuItems,
+              },
+            },
+          ]}
+        />
       </div>
       <div className="search_div">
         <Input

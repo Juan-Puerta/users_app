@@ -11,10 +11,10 @@ const SearchUsers = () => {
   return (
     <div className="page_search_users">
       <Row className="row_users">
-        <Col className="search" md={24} lg={14}>
+        <Col className="search" xs={24} sm={24} md={24} lg={14}>
           <ListUsers array_users={state.searched_users} />
         </Col>
-        <Col className="box" md={24} lg={10}>
+        <Col className="box" xs={24} sm={24} md={24} lg={10}>
           <Graphic />
         </Col>
       </Row>
