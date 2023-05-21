@@ -1,6 +1,7 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import MainPage from "../pages/main_page";
 import SearchUsers from "../pages/search_users/search_users";
+import SavedUsers from "../pages/saved_users/saved_users";
 import SearchGit from "../pages/search_git/search_git";
 import User from "../pages/user/user";
 
@@ -11,6 +12,8 @@ const routing = (
         <Route index element={<SearchUsers />} />
         <Route path="user" element={<SearchGit />} />
         <Route path="user/:id" element={<User />} />
+        <Route path="saved_users" element={<SavedUsers />} />
+        <Route path="saved_users/user/:id" element={<User />} />
       </Route>
     </Routes>
   </BrowserRouter>

@@ -3,13 +3,12 @@ import { Input, Button, message, Divider } from "antd";
 import { BarChartOutlined, SearchOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import AppContext from "../../store/app_context";
-import { github_api } from "../../config/axios";
+import { github_api } from "../../config/axios_github_api";
 import "./menu.css";
 
 const MenuApp = () => {
   const state = useContext(AppContext);
   const [user_name, set_user_name] = useState("");
-  const [page, set_page] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
 
   const error = (msg) => {
@@ -30,10 +29,10 @@ const MenuApp = () => {
   };
 
   const on_change = async () => {
-    if (!page) {
+    if (state.page === state.pages.search) {
       const resp = await github_api.get(`search/users?q=${user_name}`);
       state.set_searched_users(resp.data.items);
-    } else {
+    } else if (state.page === state.pages.view) {
       try {
         const resp = await github_api.get(`users/${user_name}`);
         state.set_user(resp.data);
@@ -65,39 +64,49 @@ const MenuApp = () => {
     <div className="menu_app">
       {contextHolder}
       <div>
-        <Link onClick={() => set_page(false)} to="/">
-          Search One
+        <Link onClick={() => state.set_page(state.pages.search)} to="/">
+          Search Users
         </Link>
         <Divider type="vertical" />
-        <Link onClick={() => set_page(true)} to="/user">
-          Search Two
+        <Link onClick={() => state.set_page(state.pages.view)} to="/user">
+          View User
+        </Link>
+        <Divider type="vertical" />
+        <Link
+          onClick={() => state.set_page(state.pages.saved)}
+          to="/saved_users"
+        >
+          Saved Users
         </Link>
       </div>
       <div className="search_div">
         <Input
+          disabled={state.page === state.pages.saved ? true : false}
           className="input_user"
           placeholder="User Name"
           value={user_name}
           onChange={(event) => set_user_name(event.target.value)}
         />
         <Button
+          disabled={state.page === state.pages.saved ? true : false}
           type="primary"
           icon={<SearchOutlined />}
           size="large"
           shape="circle"
           onClick={validator}
         />
-        {!page ? (
-          <Button
-            type="primary"
-            icon={<BarChartOutlined />}
-            size="large"
-            shape="circle"
-            onClick={change_followes}
-          />
-        ) : (
-          <></>
-        )}
+        <Button
+          disabled={
+            state.page === state.pages.view || state.page === state.pages.saved
+              ? true
+              : false
+          }
+          type="primary"
+          icon={<BarChartOutlined />}
+          size="large"
+          shape="circle"
+          onClick={change_followes}
+        />
       </div>
     </div>
   );

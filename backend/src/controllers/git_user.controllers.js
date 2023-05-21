@@ -12,11 +12,12 @@ export const get_git_users = async (req, res) => {
 
 export const add_git_user = async (req, res) => {
   try {
-    const { id, login, email, avatar_url } = req.body;
+    const { id, login, html_url, avatar_url } = req.body.data;
+    console.log(req.body.data);
 
     await pool.query(
-      "INSERT INTO git_user (id, login, email, avatar_url) VALUES (?, ?, ?, ?)",
-      [id, login, email, avatar_url]
+      "INSERT INTO git_user (id, login, html_url, avatar_url) VALUES (?, ?, ?, ?)",
+      [id, login, html_url, avatar_url]
     );
 
     res.send("Post success");

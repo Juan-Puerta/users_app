@@ -1,12 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import CardUser from "../card_user/card_user";
-import AppContext from "../../store/app_context";
 import { List } from "antd";
 import "./list_users.css";
 
-const ListUsers = () => {
-  const state = useContext(AppContext);
-
+const ListUsers = ({ array_users }) => {
   return (
     <List
       pagination={{
@@ -22,7 +19,7 @@ const ListUsers = () => {
         xl: 2,
         xxl: 2,
       }}
-      dataSource={state.searched_users}
+      dataSource={array_users}
       renderItem={(user) => (
         <List.Item key={user.id}>
           <div className="list">
