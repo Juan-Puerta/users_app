@@ -41,10 +41,22 @@ Rest Api básica hecha con Node JS y Express que se comunica con una base de dat
     DB_PASSWORD=<tu password>
     ```
 
+## Endpoints
+
+- GET: Devuelve los usuarios guardados en la base de datos `http://localhost:3000/api/git_users`
+- POST: Añade a un nuevo usuario a la base de datos `http://localhost:3000/api/git_users`, el cuerpo de la petición debe ser de la siguiente forma
+    ```
+    {
+        "id": 42070035
+        "login": "Juan-Puerta"
+        "html_url: "https://github.com/Juan-Puerta"
+        "avatar_url": "https://avatars.githubusercontent.com/u/42070035?v=4"
+    }
+    ```
+- DELETE: Elimina a un usuario según su número id `http://localhost:3000/api/git_users/:id`
+
 ## Tecnologías usadas
 
-- React JS
-- Ant Design
 - MySQL
 - Node JS
 - Express
