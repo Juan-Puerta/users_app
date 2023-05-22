@@ -38,7 +38,6 @@ const Graphic = () => {
     scales: {
       y: {
         min: 0,
-        max: 35,
       },
       x: {
         ticks: { color: "rgb(22, 119, 255)" },
